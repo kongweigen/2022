@@ -21,7 +21,6 @@ num04 = 45; // any 类型
 ```
 
 ---
-
 ### 类型断言
 
 语法
@@ -32,4 +31,24 @@ let num05: number = arrNum.find((n) => n > 2) as number;
 
 let someValue: any = "this is a string";
 let strLen: number = someValue.length;
+```
+
+非空断言
+
+```ts
+let stringNullUndefined: null | undefined | string
+// stringNullUndefined.toString() // error
+stringNullUndefined!.toString()
+```
+
+确定类型断言
+
+```ts
+// let num06: number // console 会直接报错，他不确定 setNumber 是否对 num06 进行赋值
+let num06!: number
+setNumber()
+console.log('num06', num06)
+function setNumber() {
+  num06 = 7
+}
 ```
