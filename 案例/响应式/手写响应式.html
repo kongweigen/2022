@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>响应式</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2 id="text">孔维根</h2>
+      <input type="text" />
+      <button id="submit">修改</button>
+    </div>
+    <script>
+      let obj = {
+        value: '孔维根'
+      }
+
+      function myEffect(val) {
+        let textDom = document.getElementById('text')
+        textDom.innerText = val
+      }
+      let p = new Proxy(obj, {
+        get(target, key) {
+          return target[key]
+        },
+        set(target, key, nv) {
+          myEffect(nv)
+        }
+      }) 
+      document.getElementById('submit').addEventListener('click', function () {
+        p.name = document.getElementsByTagName('input')[0].value
+      })
+    </script>
+  </body>
+</html>
